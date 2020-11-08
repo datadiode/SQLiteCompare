@@ -300,6 +300,63 @@ namespace SQLiteTurbo
             } // catch
         }
 
+
+        private void checkBoxEpochDateTime_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEpochDateTime.Visible = checkBoxEpochDateTime.Checked;
+            if (checkBoxEpochDateTime.Checked)
+            {
+                convertEpochIntoDateAndTime();
+            }
+        }
+
+        private void convertEpochIntoDateAndTime()
+        {
+            var dateTimeOffset = DateTimeOffsetExtensions.FromUnixTimeMilliseconds(Convert.ToInt64(numInteger.Value));
+            var dateTime = dateTimeOffset.UtcDateTime;
+
+            this.epochTimePicker.ValueChanged -= this.epochTimePicker_ValueChanged;
+            this.epochDatePicker.ValueChanged -= this.epochDatePicker_ValueChanged;
+
+            epochDatePicker.Value = dateTime;
+            epochTimePicker.Value = dateTime;
+
+            this.epochDatePicker.ValueChanged += this.epochDatePicker_ValueChanged;
+            this.epochTimePicker.ValueChanged += this.epochTimePicker_ValueChanged;
+        }
+
+        private void convertDateAndTimeIntoEpoch()
+        {
+            var date = epochDatePicker.Value.Date.ToUniversalTime();
+            var timeSpan = epochTimePicker.Value.TimeOfDay;
+            var dateTime = date + timeSpan;
+            var dateTimeOffset = new DateTimeOffset(dateTime);
+
+            this.numInteger.ValueChanged -= this.numInteger_ValueChanged;
+
+            numInteger.Value = dateTimeOffset.ToUnixTimeMilliseconds();
+
+            this.numInteger.ValueChanged += this.numInteger_ValueChanged;
+        }
+
+        private void epochDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            convertDateAndTimeIntoEpoch();
+        }
+
+        private void epochTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            convertDateAndTimeIntoEpoch();
+        }
+
+        private void numInteger_ValueChanged(object sender, EventArgs e)
+        {
+            if (checkBoxEpochDateTime.Checked)
+            {
+                convertEpochIntoDateAndTime();
+            }
+        }
+
         private void tbcTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateState();

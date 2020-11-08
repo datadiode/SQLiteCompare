@@ -31,6 +31,12 @@ namespace SQLiteTurbo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CellValueEditorDialog));
             this.tbcTypes = new System.Windows.Forms.TabControl();
             this.tbpEditInteger = new System.Windows.Forms.TabPage();
+            this.checkBoxEpochDateTime = new System.Windows.Forms.CheckBox();
+            this.groupBoxEpochDateTime = new System.Windows.Forms.GroupBox();
+            this.epochTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.epochDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numInteger = new System.Windows.Forms.NumericUpDown();
             this.tbpEditFloatingPoint = new System.Windows.Forms.TabPage();
@@ -56,14 +62,15 @@ namespace SQLiteTurbo
             this.label3 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.tbpEditGuid = new System.Windows.Forms.TabPage();
+            this.txtGuid = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.cbxSetAsNull = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.tbpEditGuid = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtGuid = new System.Windows.Forms.MaskedTextBox();
             this.tbcTypes.SuspendLayout();
             this.tbpEditInteger.SuspendLayout();
+            this.groupBoxEpochDateTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numInteger)).BeginInit();
             this.tbpEditFloatingPoint.SuspendLayout();
             this.tbpEditBoolean.SuspendLayout();
@@ -77,9 +84,9 @@ namespace SQLiteTurbo
             // 
             // tbcTypes
             // 
-            this.tbcTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbcTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbcTypes.Controls.Add(this.tbpEditInteger);
             this.tbcTypes.Controls.Add(this.tbpEditFloatingPoint);
             this.tbcTypes.Controls.Add(this.tbpEditBoolean);
@@ -96,6 +103,8 @@ namespace SQLiteTurbo
             // 
             // tbpEditInteger
             // 
+            this.tbpEditInteger.Controls.Add(this.checkBoxEpochDateTime);
+            this.tbpEditInteger.Controls.Add(this.groupBoxEpochDateTime);
             this.tbpEditInteger.Controls.Add(this.label1);
             this.tbpEditInteger.Controls.Add(this.numInteger);
             this.tbpEditInteger.Location = new System.Drawing.Point(4, 22);
@@ -105,6 +114,70 @@ namespace SQLiteTurbo
             this.tbpEditInteger.TabIndex = 2;
             this.tbpEditInteger.Text = "Integer";
             this.tbpEditInteger.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxEpochDateTime
+            // 
+            this.checkBoxEpochDateTime.AutoSize = true;
+            this.checkBoxEpochDateTime.Location = new System.Drawing.Point(18, 58);
+            this.checkBoxEpochDateTime.Name = "checkBoxEpochDateTime";
+            this.checkBoxEpochDateTime.Size = new System.Drawing.Size(166, 17);
+            this.checkBoxEpochDateTime.TabIndex = 3;
+            this.checkBoxEpochDateTime.Text = "Use Unix Time in Milliseconds";
+            this.checkBoxEpochDateTime.UseVisualStyleBackColor = true;
+            this.checkBoxEpochDateTime.CheckedChanged += new System.EventHandler(this.checkBoxEpochDateTime_CheckedChanged);
+            // 
+            // groupBoxEpochDateTime
+            // 
+            this.groupBoxEpochDateTime.Controls.Add(this.epochTimePicker);
+            this.groupBoxEpochDateTime.Controls.Add(this.label9);
+            this.groupBoxEpochDateTime.Controls.Add(this.epochDatePicker);
+            this.groupBoxEpochDateTime.Controls.Add(this.label10);
+            this.groupBoxEpochDateTime.Location = new System.Drawing.Point(190, 58);
+            this.groupBoxEpochDateTime.Name = "groupBoxEpochDateTime";
+            this.groupBoxEpochDateTime.Size = new System.Drawing.Size(267, 56);
+            this.groupBoxEpochDateTime.TabIndex = 4;
+            this.groupBoxEpochDateTime.TabStop = false;
+            this.groupBoxEpochDateTime.Text = "DateTime to convert into integer";
+            this.groupBoxEpochDateTime.Visible = false;
+            // 
+            // epochTimePicker
+            // 
+            this.epochTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.epochTimePicker.Location = new System.Drawing.Point(180, 23);
+            this.epochTimePicker.Name = "epochTimePicker";
+            this.epochTimePicker.ShowUpDown = true;
+            this.epochTimePicker.Size = new System.Drawing.Size(73, 20);
+            this.epochTimePicker.TabIndex = 9;
+            this.epochTimePicker.ValueChanged += new System.EventHandler(this.epochTimePicker_ValueChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(141, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Time:";
+            // 
+            // epochDatePicker
+            // 
+            this.epochDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.epochDatePicker.Location = new System.Drawing.Point(44, 23);
+            this.epochDatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.epochDatePicker.Name = "epochDatePicker";
+            this.epochDatePicker.ShowUpDown = true;
+            this.epochDatePicker.Size = new System.Drawing.Size(91, 20);
+            this.epochDatePicker.TabIndex = 7;
+            this.epochDatePicker.ValueChanged += new System.EventHandler(this.epochDatePicker_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 13);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Date:";
             // 
             // label1
             // 
@@ -121,6 +194,7 @@ namespace SQLiteTurbo
             this.numInteger.Name = "numInteger";
             this.numInteger.Size = new System.Drawing.Size(151, 20);
             this.numInteger.TabIndex = 0;
+            this.numInteger.ValueChanged += new System.EventHandler(this.numInteger_ValueChanged);
             // 
             // tbpEditFloatingPoint
             // 
@@ -136,8 +210,8 @@ namespace SQLiteTurbo
             // 
             // txtFloatingPoint
             // 
-            this.txtFloatingPoint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFloatingPoint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFloatingPoint.Location = new System.Drawing.Point(66, 15);
             this.txtFloatingPoint.Name = "txtFloatingPoint";
             this.txtFloatingPoint.Size = new System.Drawing.Size(274, 20);
@@ -210,9 +284,9 @@ namespace SQLiteTurbo
             // 
             // txtValue
             // 
-            this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValue.Location = new System.Drawing.Point(15, 33);
             this.txtValue.Multiline = true;
             this.txtValue.Name = "txtValue";
@@ -278,12 +352,11 @@ namespace SQLiteTurbo
             // 
             // ucHexEditor
             // 
-            this.ucHexEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHexEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ucHexEditor.BytesPerLine = 10;
             this.ucHexEditor.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucHexEditor.InfoForeColor = System.Drawing.Color.Gray;
             this.ucHexEditor.LineInfoVisible = true;
             this.ucHexEditor.Location = new System.Drawing.Point(15, 33);
             this.ucHexEditor.Name = "ucHexEditor";
@@ -374,6 +447,37 @@ namespace SQLiteTurbo
             this.label2.TabIndex = 2;
             this.label2.Text = "Date:";
             // 
+            // tbpEditGuid
+            // 
+            this.tbpEditGuid.Controls.Add(this.txtGuid);
+            this.tbpEditGuid.Controls.Add(this.label5);
+            this.tbpEditGuid.Location = new System.Drawing.Point(4, 22);
+            this.tbpEditGuid.Name = "tbpEditGuid";
+            this.tbpEditGuid.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpEditGuid.Size = new System.Drawing.Size(506, 205);
+            this.tbpEditGuid.TabIndex = 8;
+            this.tbpEditGuid.Text = "Unique Identifier";
+            this.tbpEditGuid.UseVisualStyleBackColor = true;
+            // 
+            // txtGuid
+            // 
+            this.txtGuid.AsciiOnly = true;
+            this.txtGuid.Location = new System.Drawing.Point(66, 15);
+            this.txtGuid.Name = "txtGuid";
+            this.txtGuid.Size = new System.Drawing.Size(228, 20);
+            this.txtGuid.TabIndex = 9;
+            this.txtGuid.TextChanged += new System.EventHandler(this.txtGuid_TextChanged);
+            this.txtGuid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGuid_KeyDown);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 17);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Value:";
+            // 
             // cbxSetAsNull
             // 
             this.cbxSetAsNull.AutoSize = true;
@@ -408,37 +512,6 @@ namespace SQLiteTurbo
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // tbpEditGuid
-            // 
-            this.tbpEditGuid.Controls.Add(this.txtGuid);
-            this.tbpEditGuid.Controls.Add(this.label5);
-            this.tbpEditGuid.Location = new System.Drawing.Point(4, 22);
-            this.tbpEditGuid.Name = "tbpEditGuid";
-            this.tbpEditGuid.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpEditGuid.Size = new System.Drawing.Size(506, 205);
-            this.tbpEditGuid.TabIndex = 8;
-            this.tbpEditGuid.Text = "Unique Identifier";
-            this.tbpEditGuid.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Value:";
-            // 
-            // txtGuid
-            // 
-            this.txtGuid.AsciiOnly = true;
-            this.txtGuid.Location = new System.Drawing.Point(66, 15);
-            this.txtGuid.Name = "txtGuid";
-            this.txtGuid.Size = new System.Drawing.Size(228, 20);
-            this.txtGuid.TabIndex = 9;
-            this.txtGuid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGuid_KeyDown);
-            this.txtGuid.TextChanged += new System.EventHandler(this.txtGuid_TextChanged);
-            // 
             // CellValueEditorDialog
             // 
             this.AcceptButton = this.btnOK;
@@ -454,11 +527,13 @@ namespace SQLiteTurbo
             this.MinimumSize = new System.Drawing.Size(463, 328);
             this.Name = "CellValueEditorDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Load += new System.EventHandler(this.CellValueEditorDialog_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CellValueEditorDialog_FormClosing);
+            this.Load += new System.EventHandler(this.CellValueEditorDialog_Load);
             this.tbcTypes.ResumeLayout(false);
             this.tbpEditInteger.ResumeLayout(false);
             this.tbpEditInteger.PerformLayout();
+            this.groupBoxEpochDateTime.ResumeLayout(false);
+            this.groupBoxEpochDateTime.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numInteger)).EndInit();
             this.tbpEditFloatingPoint.ResumeLayout(false);
             this.tbpEditFloatingPoint.PerformLayout();
@@ -514,5 +589,11 @@ namespace SQLiteTurbo
         private System.Windows.Forms.TabPage tbpEditGuid;
         private System.Windows.Forms.MaskedTextBox txtGuid;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBoxEpochDateTime;
+        private System.Windows.Forms.GroupBox groupBoxEpochDateTime;
+        private System.Windows.Forms.DateTimePicker epochTimePicker;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker epochDatePicker;
+        private System.Windows.Forms.Label label10;
     }
 }
