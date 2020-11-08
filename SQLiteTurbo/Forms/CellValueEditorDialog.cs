@@ -155,8 +155,8 @@ namespace SQLiteTurbo
             }
             else if (tbcTypes.SelectedTab == tbpEditFloatingPoint)
             {
-                if (Utils.GetDbType(_column.ColumnType) == DbType.Single)
-                    _value = float.Parse(txtFloatingPoint.Text);
+                if (Utils.GetDbType(_column.ColumnType) == DbType.Decimal)
+                    _value = decimal.Parse(txtFloatingPoint.Text);
                 else
                     _value = double.Parse(txtFloatingPoint.Text);
             }

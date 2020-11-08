@@ -1114,10 +1114,10 @@ namespace SQLiteTurbo
 
             if (tname.Contains("int"))
                 return DbType.Int64;
-            if (tname.Contains("float") || tname.Contains("double") || tname.Contains("numeric"))
+            if (tname.Contains("real") || tname.Contains("float") || tname.Contains("double"))
                 return DbType.Double;
-            if (tname.Contains("real"))
-                return DbType.Single;
+            if (tname.Contains("numeric"))
+                return DbType.Decimal;
 
             if (tname.Contains("boolean") || tname.Contains("bit"))
                 return DbType.Boolean;
@@ -1178,10 +1178,10 @@ namespace SQLiteTurbo
             if (value is byte || value is sbyte || value is short || value is ushort || value is int ||
                 value is uint || value is long || value is ulong)
                 return DbType.Int64;
-            if (value is double || value is decimal)
+            if (value is double || value is float)
                 return DbType.Double;
-            if (value is float)
-                return DbType.Single;
+            if (value is decimal)
+                return DbType.Decimal;
             if (value is byte[])
                 return DbType.Binary;
             if (value is bool)
