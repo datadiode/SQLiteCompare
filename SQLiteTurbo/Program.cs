@@ -27,6 +27,8 @@ namespace SQLiteTurbo
     {
         static Program()
         {
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture; // real numbers using "." decimal separator
+            Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.InvariantCulture; //.net exceptions in English
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
         }
